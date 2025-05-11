@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class AppTextStyles {
-  static const heading = TextStyle(
+  static const TextStyle heading = TextStyle(
     fontFamily: 'Nunito',
     fontWeight: FontWeight.w700,
     fontSize: 38,
@@ -9,7 +9,7 @@ abstract class AppTextStyles {
     letterSpacing: -0.6,
   );
 
-  static const contentHeading = TextStyle(
+  static const TextStyle contentHeading = TextStyle(
     fontFamily: 'Nunito',
     fontWeight: FontWeight.w700,
     fontSize: 26,
@@ -17,7 +17,7 @@ abstract class AppTextStyles {
     letterSpacing: -0.6,
   );
 
-  static const bodyLarge = TextStyle(
+  static const TextStyle bodyLarge = TextStyle(
     fontFamily: 'Nunito',
     fontWeight: FontWeight.w400,
     fontSize: 18,
