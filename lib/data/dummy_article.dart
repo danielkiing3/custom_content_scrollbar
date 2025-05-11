@@ -1,10 +1,10 @@
-import 'package:custom_content_scrollbar/models/article.dart';
-import 'package:custom_content_scrollbar/models/article_subcontent.dart';
+import '../models/article.dart';
+import '../models/article_subcontent.dart';
 
 const Article dummyArticle = Article(
   title: 'Why even intercept?',
   author: 'Daniel Olayinka',
-  articleTime: Duration(minutes: 3),
+  articleTime: Duration(minutes: 3, seconds: 34),
   subContent: <ArticleSubcontent>[
     ArticleSubcontent(
       heading: 'The What',
