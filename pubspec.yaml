@@ -18,6 +18,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  assets:
+    - assets/images/demo_avater.jpg
+
   fonts:
     - family: Nunito
       fonts:
