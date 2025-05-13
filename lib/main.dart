@@ -18,3 +18,6 @@ class _MainApp extends State<MainApp> {
     return const MaterialApp(debugShowCheckedModeBanner: false, home: ArticleScreen(article: dummyArticle));
   }
 }
+
+
+// NOTE TO SELF: No file should exceed 200 LOC unless extremely required 
