@@ -61,6 +61,7 @@ class _ArticleScreenState extends State<ArticleScreen> with ArticleScrollSyncCon
                     right: 0,
                     child: PortraitScrollSelector(
                       title: widget.article.title,
+                      authorName: widget.article.author,
                       progressNotifier: _progressNotifier,
                       contentHeader: _subContentHeaderList,
                       articleDurationLength: widget.article.articleTime,

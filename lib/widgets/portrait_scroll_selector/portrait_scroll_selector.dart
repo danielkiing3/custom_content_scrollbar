@@ -14,6 +14,7 @@ class PortraitScrollSelector extends StatefulWidget {
     required this.progressNotifier,
     required this.articleDurationLength,
     required this.title,
+    required this.authorName,
     required this.contentHeader,
     required this.currentSectionIndex,
     required this.contentKeys,
@@ -25,6 +26,7 @@ class PortraitScrollSelector extends StatefulWidget {
   final ValueNotifier<double> progressNotifier;
   final Duration articleDurationLength;
   final String title;
+  final String authorName;
   final List<String> contentHeader;
   final ValueNotifier<int> currentSectionIndex;
   final List<GlobalKey> contentKeys;
@@ -96,9 +98,11 @@ class _PortraitScrollSelectorState extends State<PortraitScrollSelector> with Si
                 // -- Top header row with avatar and title
                 PortraitScrollHeader(
                   title: widget.title,
+                  authorName: widget.authorName,
                   avatarSize: animations.avatarSize.value,
                   avatarBorderRadius: animations.avatarRadius.value,
                   circularOpacity: animations.circularIndicatorOpacity.value,
+                  authorOpacity: animations.authorOpacity.value,
                   progressNotifier: widget.progressNotifier,
                 ),
 
@@ -145,6 +149,7 @@ class _PortraitScrollAnimations {
     required this.avatarSize,
     required this.avatarRadius,
     required this.circularIndicatorOpacity,
+    required this.authorOpacity,
   });
   factory _PortraitScrollAnimations.fromController({
     required AnimationController controller,
@@ -159,6 +164,10 @@ class _PortraitScrollAnimations {
       avatarSize: Tween<double>(begin: 30, end: 60).animate(curved),
       avatarRadius: Tween<double>(begin: 100, end: 12).animate(curved),
       circularIndicatorOpacity: Tween<double>(begin: 1, end: 0).animate(curved),
+      authorOpacity: Tween<double>(
+        begin: 0,
+        end: 1,
+      ).animate(CurvedAnimation(parent: controller, curve: Interval(0.2, 1, curve: curve))),
     );
   }
 
@@ -170,4 +179,5 @@ class _PortraitScrollAnimations {
   final Animation<double> avatarSize;
   final Animation<double> avatarRadius;
   final Animation<double> circularIndicatorOpacity;
+  final Animation<double> authorOpacity;
 }

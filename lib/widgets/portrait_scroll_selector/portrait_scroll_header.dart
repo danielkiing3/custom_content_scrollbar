@@ -8,16 +8,20 @@ class PortraitScrollHeader extends StatelessWidget {
   const PortraitScrollHeader({
     super.key,
     required this.title,
+    required this.authorName,
     required this.avatarSize,
     required this.avatarBorderRadius,
     required this.circularOpacity,
+    required this.authorOpacity,
     required this.progressNotifier,
   });
 
   final String title;
+  final String authorName;
   final double avatarSize;
   final double avatarBorderRadius;
   final double circularOpacity;
+  final double authorOpacity;
   final ValueNotifier<double> progressNotifier;
 
   @override
@@ -25,6 +29,7 @@ class PortraitScrollHeader extends StatelessWidget {
     return Align(
       alignment: Alignment.topCenter,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Row(
@@ -39,12 +44,29 @@ class PortraitScrollHeader extends StatelessWidget {
               ),
               const SizedBox(width: 10),
 
-              // -- Titile
-              Text(
-                title,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                style: AppTextStyles.bodyLarge.copyWith(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  // -- Titile
+                  Text(
+                    title,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: AppTextStyles.bodyLarge.copyWith(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  Opacity(
+                    opacity: authorOpacity,
+                    child: Text(
+                      authorName,
+                      style: AppTextStyles.bodyLarge.copyWith(color: Colors.white.withValues(alpha: 0.7)),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
