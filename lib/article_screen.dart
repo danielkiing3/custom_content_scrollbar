@@ -6,6 +6,7 @@ import 'utils/constants/breakpoint.dart';
 import 'utils/logging/debug_print.dart';
 import 'widgets/article_content_body.dart';
 import 'widgets/control_input_enum.dart';
+import 'widgets/landspace_scroll_selector/landspace_scroll_selector.dart';
 import 'widgets/portrait_scroll_selector/portrait_scroll_selector.dart';
 import 'package:flutter/material.dart';
 
@@ -79,12 +80,9 @@ class _ArticleScreenState extends State<ArticleScreen> with ArticleScrollSyncCon
                     right: 20,
                     top: 0,
                     bottom: 0,
-                    child: Center(
-                      child: Container(
-                        height: 300,
-                        width: 60,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.green),
-                      ),
+                    child: LandspaceScrollSelector(
+                      progressNotifier: _progressNotifier,
+                      currentSectionIndex: _currentSectionIndex,
                     ),
                   ),
               ],
