@@ -22,13 +22,13 @@ class ArticleContentList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.center,
+      alignment: Alignment.topCenter,
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: kMaxContentWidth),
-        child: SingleChildScrollView(
-          controller: scrollController,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: kTwentyFour, vertical: 8),
+          child: SingleChildScrollView(
+            controller: scrollController,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
