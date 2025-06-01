@@ -9,7 +9,6 @@ class CustomListWheelScrollView extends StatelessWidget {
     super.key,
     required this.contentHeaders,
     required this.contentKeys,
-    required this.currentSubContentIndexNotifier,
     required this.customListWheelController,
     required this.activeControlNotifier,
     required this.debouncer,
@@ -17,7 +16,6 @@ class CustomListWheelScrollView extends StatelessWidget {
 
   final List<GlobalKey> contentKeys;
   final List<String> contentHeaders;
-  final ValueNotifier<int> currentSubContentIndexNotifier;
   final FixedExtentScrollController customListWheelController;
   final ValueNotifier<ScrollInput> activeControlNotifier;
   final VoidCallback debouncer;

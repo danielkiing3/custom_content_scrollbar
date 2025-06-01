@@ -11,26 +11,26 @@ import 'portrait_scroll_header.dart';
 class PortraitScrollSelector extends StatefulWidget {
   const PortraitScrollSelector({
     super.key,
-    required this.progressNotifier,
-    required this.articleDurationLength,
     required this.title,
     required this.authorName,
-    required this.contentHeader,
-    required this.currentSectionIndex,
-    required this.contentKeys,
+    required this.articleDurationLength,
+    required this.progressNotifier,
     required this.fixedExtentScrollController,
+    required this.contentHeader,
+    required this.contentKeys,
     required this.interactionSource,
     required this.debouncer,
   });
 
-  final ValueNotifier<double> progressNotifier;
-  final Duration articleDurationLength;
   final String title;
   final String authorName;
-  final List<String> contentHeader;
-  final ValueNotifier<int> currentSectionIndex;
-  final List<GlobalKey> contentKeys;
+  final Duration articleDurationLength;
+
+  final ValueNotifier<double> progressNotifier;
+
   final FixedExtentScrollController fixedExtentScrollController;
+  final List<String> contentHeader;
+  final List<GlobalKey> contentKeys;
   final ValueNotifier<ScrollInput> interactionSource;
   final VoidCallback debouncer;
 
@@ -66,7 +66,7 @@ class _PortraitScrollSelectorState extends State<PortraitScrollSelector> with Si
   }
 
   /// Callback to toggle the expand state
-  void toggleExpanded() {
+  void _toggleExpanded() {
     if (isExpanded) {
       _controller.reverse();
     } else {
@@ -74,15 +74,13 @@ class _PortraitScrollSelectorState extends State<PortraitScrollSelector> with Si
     }
 
     // Update the state of [isExpanded]
-    setState(() {
-      isExpanded = !isExpanded;
-    });
+    isExpanded = !isExpanded;
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: toggleExpanded,
+      onTap: _toggleExpanded,
       child: AnimatedBuilder(
         animation: _controller,
         builder: (BuildContext context, Widget? child) {
@@ -120,7 +118,6 @@ class _PortraitScrollSelectorState extends State<PortraitScrollSelector> with Si
               height: 102,
               child: CustomListWheelScrollView(
                 contentHeaders: widget.contentHeader,
-                currentSubContentIndexNotifier: widget.currentSectionIndex,
                 contentKeys: widget.contentKeys,
                 customListWheelController: widget.fixedExtentScrollController,
                 activeControlNotifier: widget.interactionSource,
