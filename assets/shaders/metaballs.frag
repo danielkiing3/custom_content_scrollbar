@@ -50,7 +50,7 @@ void main(){
     vec2 st = (FlutterFragCoord().xy / uSize);
 
     float threshold = thresoldValue;
-    float blendValue = 0.2;
+    float blendValue = 0.1;
     float alphaChannel = 1.0;
 
     // Animating metaball
