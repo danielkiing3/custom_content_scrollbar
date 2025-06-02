@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shaders/flutter_shaders.dart';
 import '../../utils/theme/app_text_styles.dart';
-
-import 'dart:ui' as ui;
-
 import '../control_input_enum.dart';
 import 'vertical_stadium_picker.dart';
 
@@ -37,6 +34,7 @@ class LandspaceScrollSelector extends StatefulWidget {
 class _LandspaceScrollSelectorState extends State<LandspaceScrollSelector> with TickerProviderStateMixin {
   late final AnimationController _animationController;
   late Animation<double> _offsetAnimation;
+  late Animation<double> _thresholdAnimation;
 
   static Duration duration = const Duration(milliseconds: 800);
   static Curve curve = Curves.fastOutSlowIn;
@@ -58,6 +56,11 @@ class _LandspaceScrollSelectorState extends State<LandspaceScrollSelector> with 
       begin: 110,
       end: 0,
     ).animate(CurvedAnimation(parent: _animationController, curve: curve, reverseCurve: curve.flipped));
+
+    _thresholdAnimation = Tween<double>(
+      begin: 2.0,
+      end: 1.3,
+    ).animate(CurvedAnimation(parent: _animationController, curve: curve));
 
     widget.progressNotifier.addListener(_handleProgressChange);
   }
@@ -99,8 +102,6 @@ class _LandspaceScrollSelectorState extends State<LandspaceScrollSelector> with 
                     builder: (_, _) {
                       return ShaderBuilder((_, FragmentShader shader, _) {
                         return AnimatedSampler((_, Size size, Canvas canvas) {
-                          final double thresoldValue = ui.lerpDouble(2.0, 1.3, _animationController.value) ?? 1.3;
-
                           final double radiusInPx = size.width / 2;
 
                           final Offset radius = Offset(radiusInPx / size.width, radiusInPx / size.height);
@@ -128,7 +129,7 @@ class _LandspaceScrollSelectorState extends State<LandspaceScrollSelector> with 
                               // uBlobColor
                               ..setColor(Colors.black)
                               // Thresold value
-                              ..setFloat(thresoldValue)
+                              ..setFloat(_thresholdAnimation.value)
                               // uBlobCenter1
                               ..setOffset(blobCenter1);
 
