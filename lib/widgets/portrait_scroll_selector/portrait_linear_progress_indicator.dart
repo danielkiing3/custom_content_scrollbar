@@ -19,7 +19,7 @@ class PortraitLinearProgressIndicator extends StatelessWidget {
       child: ValueListenableBuilder<double>(
         valueListenable: progressNotifier,
         builder: (_, double progress, _) {
-          final Duration currentDuration = articleDurationLength * progress.clamp(0.0, 1.0);
+          final Duration currentDuration = articleDurationLength * progress;
 
           return Row(
             crossAxisAlignment: CrossAxisAlignment.center,

@@ -3,9 +3,9 @@ import 'dart:async';
 import 'models/article.dart';
 import 'models/article_subcontent.dart';
 import 'utils/constants/breakpoint.dart';
-import 'utils/logging/debug_print.dart';
 import 'widgets/article_content_body.dart';
 import 'widgets/control_input_enum.dart';
+import 'widgets/landspace_scroll_selector/landspace_scroll_selector.dart';
 import 'widgets/portrait_scroll_selector/portrait_scroll_selector.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +40,6 @@ class _ArticleScreenState extends State<ArticleScreen> with ArticleScrollSyncCon
         bottom: false,
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-            printDebug('Width ${constraints.maxWidth}');
             final bool isTablet = constraints.maxWidth > kLargeScreenExtent;
 
             return Stack(
@@ -53,7 +52,7 @@ class _ArticleScreenState extends State<ArticleScreen> with ArticleScrollSyncCon
                   subContent: widget.article.subContent,
                 ),
 
-                // -- Custom scroll selector
+                // -- Portrait Scroll Selector
                 if (!isTablet)
                   Positioned(
                     bottom: 20,
@@ -66,25 +65,25 @@ class _ArticleScreenState extends State<ArticleScreen> with ArticleScrollSyncCon
                       contentHeader: _subContentHeaderList,
                       articleDurationLength: widget.article.articleTime,
                       contentKeys: _subContentKey,
-                      currentSectionIndex: _currentSectionIndex,
                       fixedExtentScrollController: _wheelController,
                       interactionSource: _interactionSource,
                       debouncer: _debounceScrollInputReset,
                     ),
                   ),
 
-                //TODO: Yet to be implemented -- new morphing ui design
+                // -- Landspace Scroll Selector
                 if (isTablet)
                   Positioned(
                     right: 20,
                     top: 0,
                     bottom: 0,
-                    child: Center(
-                      child: Container(
-                        height: 300,
-                        width: 60,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.green),
-                      ),
+                    child: LandspaceScrollSelector(
+                      progressNotifier: _progressNotifier,
+                      currentSectionIndex: _currentSectionIndex,
+                      contentHeader: _subContentHeaderList,
+                      activeControlNotifier: _interactionSource,
+                      debouncer: _debounceScrollInputReset,
+                      contentKeys: _subContentKey,
                     ),
                   ),
               ],
